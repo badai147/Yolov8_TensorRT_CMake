@@ -12,15 +12,16 @@
   - 请使用pip install安装。
 - c++：
   - 主要用于推理，需要opencv、tensorrt、cuda、cudnn，请选择适配gpu的cuda和tensorRT版本，尽量最新，安装好后请在tensorrt_pred_cpp/CMakeLists.txt中修改相应路径。
+  - **经修改，目前代码仅支持TensorRT>10的版本。**
 
 ### 模型训练和导出
 1. 下载yolov8预训练模型
 2. 设置数据集格式，dataset文件夹下存在images和labels文件夹，这两个文件夹下应分为训练集、验证集和测试集。训练集用于训练模型，验证集用于在训练中检验模型性能，测试集用于训练后测试模型性能。请在train_export/armor.yaml中修改相应内容。
-```
-path: ./dataset
-train: images/train
-val: images/val
-test: images/test
+  ```
+  path: ./dataset
+  train: images/train
+  val: images/val
+  test: images/test
 ```
 3. 在train_export.py文件中修改相应代码后运行：`python train_export.py`
 
@@ -28,22 +29,21 @@ test: images/test
 windows:
 1. 配置环境和CMakeLists.txt
 2. 修改main.cpp文件中模型或其他文件路径地址。
-3. 查看tensorRT版本，如果tensorRT版本低于10，请注释include/yolov8.hpp文件中的`#define TRT_10`这行代码。
-4. 编译
-```
-mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
-```
-5. 将模型和其他文件(如图片或视频)复制到编译出来的文件夹中，文件夹应包含如下文件：
-```
-yolov8.exe
-model.trt
-0001.jpg
-0002.mp4
-```
-6. 运行exe文件。
+3. 编译
+  ```
+  mkdir build
+  cd build
+  cmake ..
+  cmake --build . --config Release
+  ```
+4. 将模型和其他文件(如图片或视频)复制到编译出来的文件夹中，文件夹应包含如下文件：
+  ```
+  yolov8.exe
+  model.trt
+  0001.jpg
+  0002.mp4
+  ```
+5. 运行exe文件。
 
 ### 附录
 TensorRT推理代码参考: https://github.com/triple-Mu/YOLOv8-TensorRT/tree/main
