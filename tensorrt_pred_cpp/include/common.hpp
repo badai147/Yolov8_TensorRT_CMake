@@ -1,6 +1,3 @@
-//
-// Created by ubuntu on 1/24/23.
-//
 
 #ifndef DETECT_END2END_COMMON_HPP
 #define DETECT_END2END_COMMON_HPP
@@ -98,11 +95,13 @@ namespace det {
     };
 
     struct PreParam {
-        float ratio = 1.0f;
-        float dw = 0.0f;
-        float dh = 0.0f;
-        float height = 0;
-        float width = 0;
+        float scale;          // 缩放比例
+        int pad_left;         // 左边填充
+        int pad_top;          // 上边填充
+        int scaled_width;     // 缩放后宽度
+        int scaled_height;    // 缩放后高度
+        int src_width;        // 原始宽度
+        int src_height;       // 原始高度
     };
 }  // namespace det
 #endif  // DETECT_END2END_COMMON_HPP

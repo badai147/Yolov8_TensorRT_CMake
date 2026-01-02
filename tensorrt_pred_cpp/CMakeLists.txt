@@ -56,19 +56,12 @@ set(PROJECT_LIB_DIRS
     "${TENSORRT_ROOT}/lib"
 )
 
-# 添加 TensorRT 10 宏定义
-if(TENSORRT_ROOT MATCHES "10")
-    add_definitions(-DTRT_10)
-    message(STATUS "Build with -DTRT_10")
-endif()
-
 # 创建可执行文件
 add_executable(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/yolov8.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/common.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/filesystem.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/infer.hpp
 )
 
 # 设置包含目录
